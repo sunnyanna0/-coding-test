@@ -31,6 +31,6 @@ int main(void) {
         }
     }
 
-    cout << answer << endl; // 결과 출력
+    cout << answer; // 결과 출력
     return 0;
 }
