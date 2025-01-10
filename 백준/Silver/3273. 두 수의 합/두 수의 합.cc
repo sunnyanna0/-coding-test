@@ -22,7 +22,7 @@ int main(void) {
     for (int i = 1; i <= x / 2; i++) {
         if (x - i <= 1000000 && arr[i] > 0 && arr[x - i] > 0) {
             if (i == x - i) { // 같은 값으로 쌍을 이루는 경우
-                answer += arr[i] / 2; // 쌍의 개수 추가
+                //answer += arr[i] / 2; // 쌍의 개수 추가
             } else {
                 answer += min(arr[i], arr[x - i]); // 가능한 최소 쌍 추가
             }
