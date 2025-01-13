@@ -1,48 +1,39 @@
 #include <iostream>
+#include <string>
+#include <list>
 #include <vector>
-#include <algorithm>
+#include <stack>
+
 using namespace std;
 
-int main(){
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-
-    int N;
-    cin >> N;
-
-    vector<int> A;
-
-    for(int i=0 ; i<N ; i++){
-        string str;
-        cin >> str;
-
-        if(str=="push"){
-            int x;
-            cin >> x;
-            A.push_back(x);
-        }
-        else if(str=="pop"){
-            if(!A.empty()) {
-                cout << A.back() << endl;
-                A.pop_back();
-            } else {
-                cout << -1 << endl;  // 벡터가 비어 있을 때 처리
-            }
-        }
-        else if(str=="size"){
-            cout << A.size() <<endl;
-        }
-        else if(str=="empty"){
-            cout << A.empty() <<endl;
-        }
-        else if(str=="top"){
-            if(!A.empty()) {
-                cout << A.back() << endl;
-            } else {
-                cout << -1 << endl;  // 벡터가 비어 있을 때 처리
-            }
-        }
+int main(void) {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  int n;
+  cin >> n;
+  stack<int> S;
+  while(n--){ // n번 반복
+    string c;
+    cin >> c;
+    if(c=="push"){
+      int t;
+      cin >> t;
+      S.push(t);
     }
-
+    else if(c=="pop"){
+      if(S.empty()) cout << -1 << '\n';
+      else{
+        cout << S.top() << '\n';
+        S.pop();
+      }
+    }
+    else if(c=="size")
+      cout << S.size() << '\n';
+    else if(c=="empty")
+      cout << (int)S.empty() << '\n';
+    else{ // top
+      if(S.empty()) cout << -1 << '\n';
+      else cout << S.top() << '\n';
+    }
+  }
 }
