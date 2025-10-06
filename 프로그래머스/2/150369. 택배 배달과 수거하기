@@ -1,0 +1,36 @@
+def solution(cap, n, deliveries, pickups):
+    answer = 0
+    # 포인터 두 개로 '남아있는 가장 먼 집'을 가리켜
+    i = n-1  # deliveries의 끝
+    j = n-1  # pickups의 끝
+
+    while i >= 0 or j >= 0:
+        # 1) 뒤쪽의 불필요한 0들을 당겨서 실제 마지막 인덱스를 맞춰
+        while i >= 0 and deliveries[i] == 0:
+            i -= 1
+        while j >= 0 and pickups[j] == 0: 
+            j -= 1
+        if i < 0 and j < 0:
+            break  # 할 일 끝
+
+        # 2) 이번 트립의 왕복 거리
+        answer += (max(i, j) + 1) * 2
+
+        # 3) 이번 트립에서 배달/수거 각각 cap만큼 처리
+        carry = cap
+        while i >= 0 and carry > 0:
+            need = min(deliveries[i], carry)
+            deliveries[i] -= need
+            carry -= need
+            if deliveries[i] == 0: 
+                i -= 1
+
+        carry = cap
+        while j >= 0 and carry > 0:
+            need = min(pickups[j], carry)
+            pickups[j] -= need
+            carry -= need
+            if pickups[j] == 0: 
+                j -= 1
+
+    return answer
