@@ -6,30 +6,18 @@ M = int(input())
 S = list(input())
 
 answer = 0
+cnt = 0
+i = 1
 
-
-
-def check(i, N):
-    global answer
-    can = True
-    for _ in range(N):
-        if i+2<len(S):
-            if S[i+1]=='O' and S[i+2]=='I':
-                i+=2
-            else:
-                can = False
-        else:
-            can = False
-    if can:
-        answer+=1
-        # print(f'{i}')
-        
-    
-
-for i in range(len(S)):
-    if S[i] == 'I':
-        check(i, N)
+while i < M - 1:
+    if S[i-1] == 'I' and S[i] == 'O' and S[i+1] == 'I':
+        cnt += 1
+        if cnt >= N:
+            answer += 1
+            cnt -= 1   # 겹침 처리
+        i += 2         # 다음 'OI'로 점프
     else:
-        continue
+        cnt = 0
+        i += 1
 
 print(answer)
